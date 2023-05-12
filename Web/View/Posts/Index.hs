@@ -6,7 +6,7 @@ data IndexView = IndexView { posts :: [Post] , pagination :: Pagination }
 instance View IndexView where
     html IndexView { .. } = [hsx|
         {breadcrumb}
-
+        <div><a href={NewSessionAction}>Login</a></div>
         <h1>Reddit Posts<a href={pathTo NewPostAction} class="btn btn-primary ms-4">+ New</a></h1>
         <div class="table-responsive">
             <table class="table">

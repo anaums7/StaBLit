@@ -11,7 +11,7 @@ instance View ShowView where
         <h1>{post.title}</h1>
         <div>{post.createdAt |> dateTime} ({post.createdAt |> timeAgo})</div>
         <div>{post.body |> renderMarkdown}</div>
-        <div><a href={NewCommentAction post.id}>New Comment</a></div>
+        <div><a href={NewCommentAction post.id}>New Comment</a></div>        
         <div>{forEach post.comments renderComment}</div>
 
     |]
@@ -28,9 +28,13 @@ renderMarkdown text =
 
 renderComment comment =
     [hsx|
+        <div class="my-4 border shadow p-3">
         <div>
             <div><b>{comment.author}</b></div>
             <div>{comment.body}</div>
             <div>{comment.createdAt |> timeAgo}</div>
+            <td><a class="text-muted p-2" href={EditCommentAction comment.id}>Edit</a></td> 
+            <td><a class="text-muted js-delete" href={DeleteCommentAction comment.id}>Delete</a></td>
+        </div>
         </div>
     |]

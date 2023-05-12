@@ -17,7 +17,7 @@ instance View EditView where
 
 renderForm :: Comment -> Html
 renderForm comment = formFor comment [hsx|
-    {(textField #postId)}
+    {(hiddenField #postId)}
     {(textField #author)}
     {(textField #body)}
     {submitButton}

@@ -35,7 +35,7 @@ instance Controller CommentsController where
                 Right comment -> do
                     comment <- comment |> updateRecord
                     setSuccessMessage "Comment updated"
-                    redirectTo EditCommentAction { .. }
+                    redirectTo (ShowPostAction ( get #postId comment ))
 
     action CreateCommentAction = do
         let comment = newRecord @Comment
@@ -55,7 +55,7 @@ instance Controller CommentsController where
         comment <- fetch commentId
         deleteRecord comment
         setSuccessMessage "Comment deleted"
-        redirectTo CommentsAction
+        redirectTo (ShowPostAction ( get #postId comment ))
 
 buildComment comment = comment
     |> fill @["postId", "author", "body"]

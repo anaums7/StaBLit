@@ -9,6 +9,8 @@ import Web.View.Posts.Show
 import qualified Text.MMark as MMark
 
 instance Controller PostsController where
+    --beforeAction = ensureIsUser
+
     action PostsAction = do
         (postsQ, pagination) <- query @Post 
             |> orderByDesc #createdAt
